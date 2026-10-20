@@ -1,0 +1,5 @@
+upstream_repo: system/tools/hidl
+framework_extractive: true
+package: org.blisslabs.ag.ext.hidl.framework
+source: https://android.googlesource.com/platform/system/tools/hidl
+build_type: extractive_apex

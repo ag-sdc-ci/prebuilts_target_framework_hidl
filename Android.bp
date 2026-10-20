@@ -1,0 +1,62 @@
+// Blueprint for system/tools/hidl (framework extractive)
+// Staged from Extractive APEX package: org.blisslabs.ag.ext.hidl.framework
+
+package {
+    default_applicable_licenses: ["system_tools_hidl_license"],
+}
+
+license {
+    name: "system_tools_hidl_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+cc_defaults {
+    name: "hidl-gen-defaults",
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    target: {
+        host: {
+            cflags: [
+                "-O0",
+                "-g",
+            ],
+        },
+    },
+}
+
+cc_defaults {
+    name: "hidl-module-defaults",
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra-semi",
+    ],
+    tidy_checks: [
+        "-performance-unnecessary-value-param",
+    ],
+    product_variables: {
+        debuggable: {
+            cflags: ["-D__ANDROID_DEBUGGABLE__"],
+        },
+    },
+}
+
+java_defaults {
+    name: "hidl-java-module-defaults",
+}
+
+cc_prebuilt_binary {
+    name: "hidl-gen",
+    host_supported: true,
+    device_supported: false,
+    srcs: ["bin/hidl-gen"],
+    prefer: true,
+}
